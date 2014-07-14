@@ -82,4 +82,5 @@
 - url: "/locations/[i:locationId]/counts/[i:countId]/instances/[i:instanceId]"
   controller: "\\v1\\Controller\\Collection\\CountsController"
   methods: [GET, POST, DELETE]
+  test: hello
 ...

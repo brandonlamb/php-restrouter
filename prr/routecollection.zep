@@ -77,17 +77,35 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
      */
     protected function addRoute(var route) -> <\Prr\RouteCollection>
     {
-        if typeof route == "array" {
-            return this->add(new Route(
-                !isset route["url"] ? null : route["url"],
-                ["controller": !isset route["controller"] ? null : route["controller"]],
-                !isset route["methods"] ? [] : route["methods"],
-                !isset route["name"] ? null : route["name"]
-            ));
-        } else {
+        var url, name, methods;
+
+        if typeof route == "object" {
             if route instanceof \Prr\Route {
                 return this->add(route);
             }
+        }
+
+        if typeof route == "array" {
+            if fetch url, route["url"] {
+                unset route["url"];
+            }
+            if fetch name, route["name"] {
+                unset route["name"];
+            }
+            if fetch methods, route["methods"] {
+                unset route["methods"];
+            }
+
+            if !isset route["controller"] {
+                let route["controller"] = "";
+            }
+
+            return this->add(new Route(
+                url,
+                route,
+                methods,
+                name
+            ));
         }
 
         throw new \InvalidArgumentException("route must be array or Route");

@@ -148,65 +148,48 @@ PHP_METHOD(Prr_RouteCollection, addRoutes) {
 PHP_METHOD(Prr_RouteCollection, addRoute) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_2;
-	zval *route, *_0, *_1 = NULL, *_3 = NULL, *_4 = NULL;
+	zval *route, *url, *name, *methods, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
 
+	ZEPHIR_SEPARATE_PARAM(route);
 
 
-	if (Z_TYPE_P(route) == IS_ARRAY) {
-		ZEPHIR_INIT_VAR(_0);
-		object_init_ex(_0, prr_route_ce);
-		ZEPHIR_INIT_VAR(_1);
-		if (!(zephir_array_isset_string(route, SS("url")))) {
-			ZEPHIR_INIT_NVAR(_1);
-			ZVAL_NULL(_1);
-		} else {
-			ZEPHIR_OBS_NVAR(_1);
-			zephir_array_fetch_string(&_1, route, SL("url"), PH_NOISY TSRMLS_CC);
-		}
-		ZEPHIR_INIT_VAR(_2);
-		array_init_size(_2, 2);
-		ZEPHIR_INIT_VAR(_3);
-		if (!(zephir_array_isset_string(route, SS("controller")))) {
-			ZEPHIR_INIT_NVAR(_3);
-			ZVAL_NULL(_3);
-		} else {
-			ZEPHIR_OBS_NVAR(_3);
-			zephir_array_fetch_string(&_3, route, SL("controller"), PH_NOISY TSRMLS_CC);
-		}
-		zephir_array_update_string(&_2, SL("controller"), &_3, PH_COPY | PH_SEPARATE);
-		ZEPHIR_INIT_LNVAR(_3);
-		if (!(zephir_array_isset_string(route, SS("methods")))) {
-			ZEPHIR_INIT_NVAR(_3);
-			array_init(_3);
-		} else {
-			ZEPHIR_OBS_NVAR(_3);
-			zephir_array_fetch_string(&_3, route, SL("methods"), PH_NOISY TSRMLS_CC);
-		}
-		ZEPHIR_INIT_VAR(_4);
-		if (!(zephir_array_isset_string(route, SS("name")))) {
-			ZEPHIR_INIT_NVAR(_4);
-			ZVAL_NULL(_4);
-		} else {
-			ZEPHIR_OBS_NVAR(_4);
-			zephir_array_fetch_string(&_4, route, SL("name"), PH_NOISY TSRMLS_CC);
-		}
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, _1, _2, _3, _4);
-		zephir_check_call_status();
-		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "add", NULL, _0);
-		zephir_check_call_status();
-		RETURN_MM();
-	} else {
+	if (Z_TYPE_P(route) == IS_OBJECT) {
 		if (zephir_instance_of_ev(route, prr_route_ce TSRMLS_CC)) {
 			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "add", NULL, route);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 	}
-	ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "route must be array or Route", "prr/routecollection.zep", 93);
+	if (Z_TYPE_P(route) == IS_ARRAY) {
+		ZEPHIR_OBS_VAR(url);
+		if (zephir_array_isset_string_fetch(&url, route, SS("url"), 0 TSRMLS_CC)) {
+			zephir_array_unset_string(&route, SS("url"), PH_SEPARATE);
+		}
+		ZEPHIR_OBS_VAR(name);
+		if (zephir_array_isset_string_fetch(&name, route, SS("name"), 0 TSRMLS_CC)) {
+			zephir_array_unset_string(&route, SS("name"), PH_SEPARATE);
+		}
+		ZEPHIR_OBS_VAR(methods);
+		if (zephir_array_isset_string_fetch(&methods, route, SS("methods"), 0 TSRMLS_CC)) {
+			zephir_array_unset_string(&route, SS("methods"), PH_SEPARATE);
+		}
+		if (!(zephir_array_isset_string(route, SS("controller")))) {
+			ZEPHIR_INIT_VAR(_0);
+			ZVAL_STRING(_0, "", 1);
+			zephir_array_update_string(&route, SL("controller"), &_0, PH_COPY | PH_SEPARATE);
+		}
+		ZEPHIR_INIT_VAR(_1);
+		object_init_ex(_1, prr_route_ce);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, url, route, methods, name);
+		zephir_check_call_status();
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "add", NULL, _1);
+		zephir_check_call_status();
+		RETURN_MM();
+	}
+	ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "route must be array or Route", "prr/routecollection.zep", 111);
 	return;
 
 }
@@ -263,7 +246,7 @@ PHP_METHOD(Prr_RouteCollection, offsetGet) {
 	ZEPHIR_CONCAT_VS(_2, offset, " does not exist.");
 	ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, _2);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_1, "prr/routecollection.zep", 122 TSRMLS_CC);
+	zephir_throw_exception_debug(_1, "prr/routecollection.zep", 140 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
