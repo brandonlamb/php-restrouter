@@ -5,11 +5,14 @@ PHP REST Router
 
 # Example 1
 
+Create router using a yaml parsed config file to define routes.
+
 ```yaml
 ---
 - url: "/users"
   controller: "UserController::getAction"
   methods: [GET, POST]
+  name: users
 
 - url: "/locations/[i:locationId]/counts/[i:countId]/instances/[i:instanceId]"
   controller: "\\v1\\Controller\\Collection\\CountsController"
