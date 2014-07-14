@@ -3,6 +3,17 @@ php-restrouter
 
 PHP REST Router
 
+Concepts
+
+- It is not the duty of the router to "figure out" the request URL (/v1/blah)
+- It is not the duty of the router to "figure out" the request method (get, post)
+- It is not the duty of the router to "dispatch" (instantiate controller classes or call methods)
+- It is not the duty of the router to "parse configs" (yaml, ini, etc)
+
+Essentially the three classes responsible for routing simply loop over an array of routes and matching against a given string url and method. Routes are defined either by creating Route objects yourself or parse a yaml config yourself into the right array format.
+
+On a successful match, the router simply passes back the route object. The route's "target" property can really contain anything (just an associative array), such as controller, method.
+
 # Example 1
 
 Create router using a yaml parsed config file to define routes.
