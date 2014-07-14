@@ -13,12 +13,6 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     protected storage;
 
     /**
-     * @see Iterator
-     * @var int
-     */
-    protected position = 0;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -53,32 +47,50 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
      *
      * @param array|RouteCollection routes
      * @return \Prr\RouteCollection
-     * @throws \InvalidArgumentException
      */
     public function addRoutes(var routes) -> <\Prr\RouteCollection>
     {
         var route;
 
-        if typeof routes != "array" && !(routes instanceof \Prr\RouteCollection) {
-            throw new \InvalidArgumentException("Routes should be an array or an instance of Traversable");
+        if typeof routes == "array" {
+            for route in routes {
+                this->addRoute(route);
+            }
         }
 
-        for route in routes {
-            if typeof route == "array" {
-                this->add(new Route(
-                    !isset route["url"] ? null : route["url"],
-                    ["controller": !isset route["controller"] ? null : route["controller"]],
-                    !isset route["methods"] ? [] : route["methods"],
-                    !isset route["name"] ? null : route["name"]
-                ));
-            } else {
-                if route instanceof \Prr\Route {
-                    this->add(route);
+        if typeof routes == "object" {
+            if (routes instanceof \Prr\RouteCollection) {
+                for route in routes->all() {
+                    this->addRoute(route);
                 }
             }
         }
 
         return this;
+    }
+
+    /**
+     * Add a route via array or Route object
+     *
+     * @param Route|array route
+     * @return \Prr\RouteCollection
+     */
+    protected function addRoute(var route) -> <\Prr\RouteCollection>
+    {
+        if typeof route == "array" {
+            return this->add(new Route(
+                !isset route["url"] ? null : route["url"],
+                ["controller": !isset route["controller"] ? null : route["controller"]],
+                !isset route["methods"] ? [] : route["methods"],
+                !isset route["name"] ? null : route["name"]
+            ));
+        } else {
+            if route instanceof \Prr\Route {
+                return this->add(route);
+            }
+        }
+
+        throw new \InvalidArgumentException("route must be array or Route");
     }
 
     /**
@@ -88,7 +100,7 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
      * @param mixed offset
      * @param mixed $value
      */
-    public function offsetSet(var offset, var value)
+    public function offsetSet(var offset, var value) -> void
     {
         this->add(value, offset);
     }
@@ -116,7 +128,7 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
      * @see ArrayAccess
      * @param mixed offset
      */
-    public function offsetUnset(var offset)
+    public function offsetUnset(var offset) -> void
     {
         unset this->storage[offset];
     }
@@ -128,7 +140,7 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
      * @param mixed offset
      * @return bool
      */
-    public function offsetExists(var offset)
+    public function offsetExists(var offset) -> boolean
     {
         return isset this->storage[offset];
     }
@@ -153,11 +165,6 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     public function current()
     {
         return current(this->storage);
-
-        if this->offsetExists(this->position) {
-            return this->storage[this->position];
-        }
-        return null;
     }
 
     /**
@@ -169,8 +176,6 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     public function key()
     {
         return key(this->storage);
-
-        return this->position;
     }
 
     /**
@@ -181,7 +186,6 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     public function next()
     {
         return next(this->storage);
-        let this->position++;
     }
 
     /**
@@ -192,8 +196,6 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     public function rewind() -> void
     {
         reset(this->storage);
-        return;
-        let this->position = 0;
     }
 
     /**
@@ -207,7 +209,16 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
         var key;
         let key = key(this->storage);
         return (key !== null && key !== false);
+    }
 
-        return this->offsetExists(this->position);
+    /**
+     * Get the storage array of routes
+     *
+     * @return array
+     */
+    public function all() -> array
+    {
+        reset(this->storage);
+        return this->storage;
     }
 }
