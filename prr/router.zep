@@ -71,20 +71,16 @@ class Router
 			"" : "[^/\\.]++"
 		];
 
-		if typeof routes == "object" {
-			if (routes instanceof RouteCollection) {
-				let this->routes = routes;
-			} else {
-				let this->routes = new RouteCollection;
-			}
+		if typeof routes == "object" && (routes instanceof RouteCollection) {
+			let this->routes = routes;
+		} else {
+			let this->routes = new \Prr\RouteCollection();
 		}
 
-		if typeof namedRoutes == "object" {
-			if (namedRoutes instanceof RouteCollection) {
-				let this->namedRoutes = namedRoutes;
-			} else {
-				let this->namedRoutes = new RouteCollection;
-			}
+		if typeof namedRoutes == "object" && (namedRoutes instanceof RouteCollection) {
+			let this->namedRoutes = namedRoutes;
+		} else {
+			let this->namedRoutes = new RouteCollection;
 		}
 
 		if !empty matchTypes {
@@ -133,7 +129,7 @@ class Router
 	public function add(string! url, var target, var methods = null, var name = null) -> <\Prr\Router>
 	{
 		var route;
-		let route = <\Prr\Route> new Route(url, target, methods, name);
+		let route = new Route(url, target, methods, name);
 
 		// Add route to collection
 		this->routes->add(route);
@@ -266,27 +262,21 @@ class Router
 	 */
 	public function match(string! requestUrl, string! method) -> boolean | <\Prr\Route>
 	{
-		array params = [];
-		int i, j;
-
-		var route, methods, routeUrl, routeLen, pattern, url, regex, match, c, n;
-
-		let match = false;
+		boolean match = false;
+		var route, methods, routeUrl, pattern, key, value, params = [];
 
 		if this->removeExtraSlashes {
 			let requestUrl = rtrim(requestUrl, "/");
 		}
-		let method = strtoupper(trim(method));
 
-		for route in this->routes {
-			let methods = route->getMethods();
+		for route in this->routes->all() {
 	        // compare server request method with route"s allowed http methods
+			let methods = route->getMethods();
 	        if !in_array(method, methods) {
 	            continue;
 	        }
 
 	        let routeUrl = route->getUrl();
-	        let routeLen = strlen(routeUrl);
 
 	        // Check for a wildcard (matches all)
 			if (routeUrl === "*") {
@@ -294,49 +284,16 @@ class Router
 			} else {
 				if isset routeUrl[0] && routeUrl[0] === "@" {
 					let pattern = "`" . substr(routeUrl, 1) . "`u";
-					let match = preg_match(pattern, requestUrl, params);
+					let match = preg_match(pattern, requestUrl, params) ? true : false;
 				} else {
-					let url = null;
-					let regex = false;
-					let j = 0;
-					fetch n, routeUrl[0];
-					//let n = isset routeUrl[0] ? routeUrl[0] : null;
-					let i = 0;
-
-					// Find the longest non-regex substring and match it against the URI
-					while true {
-						if routeLen < (i + 1) {
-							break;
-						}
-
-						if regex === false {
-							let c = n;
-							let regex = (c === "[" || c === "(" || c === ".");
-
-							if regex === false && routeLen > (i + 1) {
-								let n = routeUrl[i + 1];
-								let regex = (n === "?" || n === "+" || n === "*" || n === "{");
-							}
-
-							if regex === false && c !== "/" && (!isset requestUrl[j] || c !== requestUrl[j]) {
-								// continue 2;
-								continue;
-							}
-							let j++;
-						}
-
-						let i++;
-						let url .= routeUrl[i];
-					}
-
-					let regex = this->compileRoute(url);
-					let match = preg_match(regex, requestUrl, params);
+					let pattern = this->compileRoute(routeUrl);
+					let match = preg_match(pattern, requestUrl, params) ? true : false;
 				}
 			}
 
 	        // Build array of key:value parameters
 			if match {
-				if params {
+				if count(params) {
 					for key, value in params {
 						if is_numeric(key) {
 							unset params[key];
@@ -362,7 +319,7 @@ class Router
 	 */
 	protected function getUrlMatches(string! url) -> array
 	{
-		var matches;
+		var matches = [];
 		preg_match_all("`(/|\\.|)\\[([^:\\]]*+)(?::([^:\\]]*+))?\\](\\?|)`", url, matches, PREG_SET_ORDER);
 		return matches;
 	}
@@ -393,7 +350,7 @@ class Router
 					let type = matchTypes[type];
 				}
 				if pre === "." {
-					let pre = "\.";
+					let pre = "\\.";
 				}
 
 				let pattern = "(?:"

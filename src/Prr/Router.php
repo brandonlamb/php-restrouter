@@ -259,8 +259,6 @@ class Router
 	        $routeUrl = $route->getUrl();
 	        $routeLen = strlen($routeUrl);
 
-echo "MATCH: $requestUrl - $routeUrl\n";
-
 	        // Check for a wildcard (matches all)
 			if ($routeUrl === '*') {
 				$match = true;
@@ -268,44 +266,7 @@ echo "MATCH: $requestUrl - $routeUrl\n";
 				$pattern = '`' . substr($routeUrl, 1) . '`u';
 				$match = preg_match($pattern, $requestUrl, $params);
 			} else {
-				$url = null;
-				$regex = false;
-				$j = 0;
-				$n = isset($routeUrl[0]) ? $routeUrl[0] : null;
-				$i = 0;
-
-				// Find the longest non-regex substring and match it against the URI
-				while (true) {
-					if ($routeLen < ($i + 1)) {
-echo "BREAK: $routeLen < i:$i + 1\n";
-						break;
-					}
-
-					if (false === $regex) {
-echo "regex=false - n:$n\n";
-						$c = $n;
-						$regex = $c === '[' || $c === '(' || $c === '.';
-
-						#if (false === $regex && false !== isset($routeUrl[$i + 1])) {
-						if (false === $regex && $routeLen > $i + 1) {
-							$n = $routeUrl[$i + 1];
-							$regex = $n === '?' || $n === '+' || $n === '*' || $n === '{';
-						}
-
-#echo "c:$c\n";
-
-						if (false === $regex && $c !== '/' && (!isset($requestUrl[$j]) || $c !== $requestUrl[$j])) {
-echo "CONTINUE - c:$c\n";
-							continue 2;
-						}
-						$j++;
-					}
-					$url .= $routeUrl[$i++];
-					echo "url:$url\n";
-				}
-
-				$regex = $this->compileRoute($url);
-echo "\n\n$routeUrl\n$url\n$regex\n";
+				$regex = $this->compileRoute($routeUrl);
 				$match = preg_match($regex, $requestUrl, $params);
 			}
 
@@ -318,7 +279,6 @@ echo "\n\n$routeUrl\n$url\n$regex\n";
 						}
 					}
 				}
-
 
 				$route->setParameters($params);
 				$route->setTarget(array_merge($route->getTarget(), ['method' => $method]));
