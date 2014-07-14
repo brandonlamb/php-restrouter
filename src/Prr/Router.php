@@ -257,6 +257,9 @@ class Router
 	        }
 
 	        $routeUrl = $route->getUrl();
+	        $routeLen = strlen($routeUrl);
+
+echo "MATCH: $requestUrl - $routeUrl\n";
 
 	        // Check for a wildcard (matches all)
 			if ($routeUrl === '*') {
@@ -273,29 +276,41 @@ class Router
 
 				// Find the longest non-regex substring and match it against the URI
 				while (true) {
-					if (!isset($routeUrl[$i])) {
+					if ($routeLen < ($i + 1)) {
+echo "BREAK: $routeLen < i:$i + 1\n";
 						break;
-					} elseif (false === $regex) {
+					}
+
+					if (false === $regex) {
+echo "regex=false - n:$n\n";
 						$c = $n;
 						$regex = $c === '[' || $c === '(' || $c === '.';
-						if (false === $regex && false !== isset($routeUrl[$i+1])) {
+
+						#if (false === $regex && false !== isset($routeUrl[$i + 1])) {
+						if (false === $regex && $routeLen > $i + 1) {
 							$n = $routeUrl[$i + 1];
 							$regex = $n === '?' || $n === '+' || $n === '*' || $n === '{';
 						}
+
+#echo "c:$c\n";
+
 						if (false === $regex && $c !== '/' && (!isset($requestUrl[$j]) || $c !== $requestUrl[$j])) {
+echo "CONTINUE - c:$c\n";
 							continue 2;
 						}
 						$j++;
 					}
 					$url .= $routeUrl[$i++];
+					echo "url:$url\n";
 				}
 
 				$regex = $this->compileRoute($url);
+echo "\n\n$routeUrl\n$url\n$regex\n";
 				$match = preg_match($regex, $requestUrl, $params);
 			}
 
 	        // Build array of key:value parameters
-			if ($match == true || $match > 0) {
+			if ($match) {
 				if ($params) {
 					foreach ($params as $key => $value) {
 						if (is_numeric($key)) {

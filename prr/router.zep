@@ -267,10 +267,9 @@ class Router
 	public function match(string! requestUrl, string! method) -> boolean | <\Prr\Route>
 	{
 		array params = [];
-		array methods = [];
-		string routeUrl;
+		int i, j;
 
-		var pattern, url, regex, j, n, i, match;
+		var route, methods, routeUrl, routeLen, pattern, url, regex, match, c, n;
 
 		let match = false;
 
@@ -278,9 +277,6 @@ class Router
 			let requestUrl = rtrim(requestUrl, "/");
 		}
 		let method = strtoupper(trim(method));
-
-		//$params = [];
-		//$match = false;
 
 		for route in this->routes {
 			let methods = route->getMethods();
@@ -290,6 +286,7 @@ class Router
 	        }
 
 	        let routeUrl = route->getUrl();
+	        let routeLen = strlen(routeUrl);
 
 	        // Check for a wildcard (matches all)
 			if (routeUrl === "*") {
@@ -302,29 +299,32 @@ class Router
 					let url = null;
 					let regex = false;
 					let j = 0;
-					let n = isset routeUrl[0] ? routeUrl[0] : null;
+					fetch n, routeUrl[0];
+					//let n = isset routeUrl[0] ? routeUrl[0] : null;
 					let i = 0;
 
 					// Find the longest non-regex substring and match it against the URI
 					while true {
-						if !isset routeUrl[i] {
+						if routeLen < (i + 1) {
 							break;
-						} else {
-							if (false === regex) {
-								let c = n;
-								let regex = (c === "[" || c === "(" || c === ".");
-
-								if regex === false && !isset routeUrl[i + 1] {
-									let n = routeUrl[i + 1];
-									let regex = (n === "?" || n === "+" || n === "*" || n === "{");
-								}
-
-								if regex === false && c !== "/" && (!isset requestUrl[j] || c !== requestUrl[j]) {
-									continue 2;
-								}
-								let j++;
-							}
 						}
+
+						if regex === false {
+							let c = n;
+							let regex = (c === "[" || c === "(" || c === ".");
+
+							if regex === false && routeLen > (i + 1) {
+								let n = routeUrl[i + 1];
+								let regex = (n === "?" || n === "+" || n === "*" || n === "{");
+							}
+
+							if regex === false && c !== "/" && (!isset requestUrl[j] || c !== requestUrl[j]) {
+								// continue 2;
+								continue;
+							}
+							let j++;
+						}
+
 						let i++;
 						let url .= routeUrl[i];
 					}
@@ -335,11 +335,11 @@ class Router
 			}
 
 	        // Build array of key:value parameters
-			if match == true || match > 0 {
+			if match {
 				if params {
 					for key, value in params {
 						if is_numeric(key) {
-							unset params[key]);
+							unset params[key];
 						}
 					}
 				}
