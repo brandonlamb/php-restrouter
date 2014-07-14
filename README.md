@@ -7,7 +7,7 @@ PHP REST Router
 
 ```yaml
 ---
-- url: "/users/"
+- url: "/users"
   controller: "UserController::getAction"
   methods: [GET, POST]
 
@@ -25,3 +25,32 @@ $url = '/locations/101/counts/10000001/instances/123/';
 $match = $router->match($url, 'GET');
 ```
 
+# Example 2
+
+```php
+// Create instance of route collection
+$collection = new Prr\RouteCollection;
+
+// Create instance of a route
+$route = new Prr\Route(
+    '/users',
+    ['controller' => 'UserController'],
+    ['GET', 'POST']
+);
+
+// Add route to route collection
+$collection[] = $route; // array access
+$collection->add($route); // oop access
+
+// Create instance of router and pass route collection
+$router = (new Prr\Router)->addRoutes($collection);
+
+// Add another route to the router
+$router->add(
+    '/posts/[i:postId]/comments',
+    ['controller' => '\\v1\\Controller\\Posts\\Collection\\CommentsController'],
+    ['GET']
+);
+
+$route = $router->match('/posts/1001/comments', 'GET');
+```
