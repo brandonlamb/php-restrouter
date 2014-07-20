@@ -1,5 +1,8 @@
 <?php
 
-$config = yaml_parse_file('routes.yaml');
+include './debug.php';
+define('START_TIME', microtime(true));
 
-echo print_r($config), "\n";
+$config = yaml_parse_file('routes2.yml');
+d($config);
+

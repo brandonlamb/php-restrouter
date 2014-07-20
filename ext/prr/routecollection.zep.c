@@ -98,11 +98,10 @@ PHP_METHOD(Prr_RouteCollection, add) {
  */
 PHP_METHOD(Prr_RouteCollection, addRoutes) {
 
-	zephir_fcall_cache_entry *_3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	HashTable *_1, *_6;
-	HashPosition _0, _5;
-	zval *routes, *route = NULL, **_2, *_4 = NULL, **_7;
+	HashTable *_1, *_5;
+	HashPosition _0, _4;
+	zval *routes, *route = NULL, **_2, *_3 = NULL, **_6;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &routes);
@@ -116,21 +115,21 @@ PHP_METHOD(Prr_RouteCollection, addRoutes) {
 		  ; zephir_hash_move_forward_ex(_1, &_0)
 		) {
 			ZEPHIR_GET_HVALUE(route, _2);
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "addroute", &_3, route);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "addroute", NULL, route);
 			zephir_check_call_status();
 		}
 	}
 	if (Z_TYPE_P(routes) == IS_OBJECT) {
 		if (zephir_instance_of_ev(routes, prr_routecollection_ce TSRMLS_CC)) {
-			ZEPHIR_CALL_METHOD(&_4, routes, "all",  NULL);
+			ZEPHIR_CALL_METHOD(&_3, routes, "all",  NULL);
 			zephir_check_call_status();
-			zephir_is_iterable(_4, &_6, &_5, 0, 0);
+			zephir_is_iterable(_3, &_5, &_4, 0, 0);
 			for (
-			  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_6, &_5)
+			  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
+			  ; zephir_hash_move_forward_ex(_5, &_4)
 			) {
-				ZEPHIR_GET_HVALUE(route, _7);
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "addroute", &_3, route);
+				ZEPHIR_GET_HVALUE(route, _6);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "addroute", NULL, route);
 				zephir_check_call_status();
 			}
 		}

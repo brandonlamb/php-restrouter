@@ -3,7 +3,7 @@
     "description": "REST Router as a C-extension for PHP",
     "keywords": ["extension"],
     "require": {
-        "php": "~5.5"
+        "php": ">=5.4.0"
     },
     "license": "MIT",
     "authors": [
@@ -12,6 +12,10 @@
             "homepage": "https://gitub.com/brandonlamb"
         }
     ],
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "4.1.*"
+    },
     "autoload": {
         "psr-0": {
             "Prr": "src"
