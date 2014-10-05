@@ -17,9 +17,11 @@ for ($i = 0; $i < 100; $i++) {
     $text1 = substr('abcdefghijklmnopqrstuvwxyz', mt_rand(0, 25), 1) . substr(md5(time()), 1);
 
     $comments[] = <<<END
-- url: "/users/[i:id]/{$text1}"
+- url: "/users/{i:id}/{$text1}"
   controller: "Controller_{$i}"
   methods: [GET, POST]
+  consumes: ["application/json", "application/xml"]
+  produces: ["application/json", "application/xml"]
 
 END;
 }

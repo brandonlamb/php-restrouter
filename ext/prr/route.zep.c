@@ -371,8 +371,8 @@ PHP_METHOD(Prr_Route, setFilters) {
 PHP_METHOD(Prr_Route, getRegex) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
-	zval *_1, *_2, _3;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
+	zval *_1, *_2;
 	zval *_0;
 
 	ZEPHIR_MM_GROW();
@@ -384,9 +384,10 @@ PHP_METHOD(Prr_Route, getRegex) {
 	ZVAL_STRING(_1, "substituteFilter", 1);
 	zephir_array_fast_append(_0, _1);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("url"), PH_NOISY_CC);
-	ZEPHIR_SINIT_VAR(_3);
-	ZVAL_STRING(&_3, "/:(\\w+)/", 0);
-	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace_callback", &_4, &_3, _0, _2);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, "/:(\\w+)/", 0);
+	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace_callback", &_3, _1, _0, _2);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -412,14 +413,14 @@ PHP_METHOD(Prr_Route, substituteFilter) {
 		_0 = zephir_array_isset_long(matches, 1);
 		if (_0) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
-			zephir_array_fetch_long(&_2, matches, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch_long(&_2, matches, 1, PH_READONLY, "prr/route.zep", 212 TSRMLS_CC);
 			_0 = zephir_array_isset(_1, _2);
 		}
 		if (_0) {
 			_3 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 			ZEPHIR_OBS_VAR(_5);
-			zephir_array_fetch_long(&_5, matches, 1, PH_NOISY TSRMLS_CC);
-			zephir_array_fetch(&_4, _3, _5, PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch_long(&_5, matches, 1, PH_NOISY, "prr/route.zep", 213 TSRMLS_CC);
+			zephir_array_fetch(&_4, _3, _5, PH_NOISY | PH_READONLY, "prr/route.zep", 213 TSRMLS_CC);
 			RETURN_CTOR(_4);
 		}
 	}

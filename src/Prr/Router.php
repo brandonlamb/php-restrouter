@@ -298,6 +298,7 @@ class Router
 	 */
 	protected function getUrlMatches($url)
 	{
+		//preg_match_all('`(/|\.|)\[([^:\]]*+)(?::([^:\]]*+))?\](\?|)`', $url, $matches, PREG_SET_ORDER);
 		preg_match_all('`(/|\.|)\[([^:\]]*+)(?::([^:\]]*+))?\](\?|)`', $url, $matches, PREG_SET_ORDER);
 		return $matches;
 	}

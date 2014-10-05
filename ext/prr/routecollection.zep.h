@@ -20,7 +20,7 @@ PHP_METHOD(Prr_RouteCollection, valid);
 PHP_METHOD(Prr_RouteCollection, all);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_routecollection_add, 0, 0, 1)
-	ZEND_ARG_INFO(0, route)
+	ZEND_ARG_OBJ_INFO(0, route, Prr\\Route, 0)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 

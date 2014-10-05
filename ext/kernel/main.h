@@ -335,13 +335,46 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
 		}\
 	}
 
+/** Get current hash key copying the iterator if needed */
+
+#if PHP_VERSION_ID < 50500
+
+#define ZEPHIR_GET_IMKEY(var, it) \
+	{\
+		int key_type, str_key_len; \
+		ulong int_key; \
+		char *str_key; \
+		\
+		ZEPHIR_INIT_NVAR(var); \
+		key_type = it->funcs->get_current_key(it, &str_key, &str_key_len, &int_key TSRMLS_CC); \
+		if (key_type == HASH_KEY_IS_STRING) { \
+			ZVAL_STRINGL(var, str_key, str_key_len, 1); \
+		} else { \
+			if (key_type == HASH_KEY_IS_LONG) { \
+				ZVAL_LONG(var, int_key); \
+			} else { \
+				ZVAL_NULL(var); \
+			} \
+		} \
+	}
+
+#else
+
+#define ZEPHIR_GET_IMKEY(var, it) \
+	{\
+		ZEPHIR_INIT_NVAR(var); \
+		it->funcs->get_current_key(it, var TSRMLS_CC); \
+	}
+
+#endif
+
 /** Foreach */
 #define ZEPHIR_GET_FOREACH_KEY(var, hash, hash_pointer) ZEPHIR_GET_HMKEY(var, hash, hash_pointer)
 
 /** Check if an array is iterable or not */
-#define zephir_is_iterable(var, array_hash, hash_pointer, duplicate, reverse) \
+#define zephir_is_iterable(var, array_hash, hash_pointer, duplicate, reverse, file, line) \
 	if (!var || !zephir_is_iterable_ex(var, array_hash, hash_pointer, duplicate, reverse)) { \
-		ZEPHIR_THROW_EXCEPTION_STRW(zend_exception_get_default(TSRMLS_C), "The argument is not initialized or iterable()"); \
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "The argument is not initialized or iterable()", file, line); \
 		ZEPHIR_MM_RESTORE(); \
 		return; \
 	}
@@ -458,8 +491,10 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
 
 #ifndef ZEPHIR_RELEASE
 #define ZEPHIR_DEBUG_PARAMS , const char *file, int line
+#define ZEPHIR_DEBUG_PARAMS_DUMMY , "", 0
 #else
 #define ZEPHIR_DEBUG_PARAMS , const char *file, int line
+#define ZEPHIR_DEBUG_PARAMS_DUMMY , "", 0
 #endif
 
 #define ZEPHIR_CHECK_POINTER(v) if (!v) fprintf(stderr, "%s:%d\n", __PRETTY_FUNCTION__, __LINE__);

@@ -1003,7 +1003,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 
 	int i, l, ll; char *s;
 	va_list ap;
-	zval *fetched, *tmp_arr, *tmp, *p, *item;
+	zval *fetched, *tmp_arr, *tmp, *p, *item, *old_p;
 	int separated = 0;
 
 	if (Z_TYPE_P(object) == IS_OBJECT) {
@@ -1042,6 +1042,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 		va_start(ap, types_count);
 
 		p = tmp_arr;
+		old_p = NULL;
 		for (i = 0; i < types_length; ++i) {
 			switch (types[i]) {
 
@@ -1053,6 +1054,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 							if (i == (types_length - 1)) {
 								zephir_array_update_string(&fetched, s, l, value, PH_COPY | PH_SEPARATE);
 							} else {
+								old_p = p;
 								p = fetched;
 							}
 							continue;
@@ -1075,6 +1077,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 							if (i == (types_length - 1)) {
 								zephir_array_update_long(&fetched, ll, value, PH_COPY | PH_SEPARATE, "", 0);
 							} else {
+								old_p = p;
 								p = fetched;
 							}
 							continue;
@@ -1097,6 +1100,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 							if (i == (types_length - 1)) {
 								zephir_array_update_zval(&fetched, item, value, PH_COPY | PH_SEPARATE);
 							} else {
+								old_p = p;
 								p = fetched;
 							}
 							continue;
@@ -1113,7 +1117,15 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 					break;
 
 				case 'a':
-					zephir_array_append(&p, *value, PH_SEPARATE);
+					if (Z_REFCOUNT_P(p) > 1) {
+						SEPARATE_ZVAL_IF_NOT_REF(&p);
+						switch (types[i - 1]) {
+							case 'z':
+								zephir_array_update_zval(&old_p, item, &p, PH_COPY);
+								break;
+						}
+					}
+					zephir_array_append(&p, *value, 0 ZEPHIR_DEBUG_PARAMS_DUMMY);
 					break;
 			}
 		}
@@ -1316,7 +1328,7 @@ int zephir_unset_property_array(zval *object, char *property, unsigned int prope
 int zephir_method_exists(const zval *object, const zval *method_name TSRMLS_DC){
 
 	char *lcname = zend_str_tolower_dup(Z_STRVAL_P(method_name), Z_STRLEN_P(method_name));
-	int res = zephir_method_exists_ex(object, lcname, Z_STRLEN_P(method_name)+1 TSRMLS_CC);
+	int res = zephir_method_exists_ex(object, lcname, Z_STRLEN_P(method_name) + 1 TSRMLS_CC);
 	efree(lcname);
 	return res;
 }
@@ -1438,6 +1450,16 @@ static int zephir_update_static_property_ex(zend_class_entry *scope, const char 
 {
 	zval **property;
 	zend_class_entry *old_scope = EG(scope);
+
+	/**
+	 * We have to protect super globals to avoid them make converted to references
+	 */
+	if (value == ZEPHIR_GLOBAL(global_null)) {
+		ALLOC_ZVAL(value);
+		Z_UNSET_ISREF_P(value);
+		Z_SET_REFCOUNT_P(value, 0);
+		ZVAL_NULL(value);
+	}
 
 	EG(scope) = scope;
 #if PHP_VERSION_ID < 50400
@@ -1612,7 +1634,7 @@ int zephir_update_static_property_array_multi_ce(zend_class_entry *ce, const cha
 				break;
 
 			case 'a':
-				zephir_array_append(&p, *value, PH_SEPARATE);
+				zephir_array_append(&p, *value, PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 				break;
 		}
 	}
@@ -1704,6 +1726,7 @@ int zephir_create_instance_params(zval *return_value, const zval *class_name, zv
 	outcome = SUCCESS;
 
 	if (zephir_has_constructor_ce(ce)) {
+
 		int param_count = zend_hash_num_elements(Z_ARRVAL_P(params));
 		zval *static_params[10];
 		zval **params_ptr, **params_arr = NULL;

@@ -49,8 +49,8 @@ class Router
 	 * Constructor
 	 *
 	 * @param RouteCollection routes
-	 * @param string $basePath
-	 * @param array $matchTypes
+	 * @param string basePath
+	 * @param array matchTypes
 	 */
 	public function __construct(<\Prr\RouteCollection> routes = null, <\Prr\RouteCollection> namedRoutes = null, string! basePath = "", var matchTypes = [])
 	{
@@ -93,8 +93,8 @@ class Router
     /**
      * Set the base _url - gets prepended to all route _url"s.
      *
-     * @param $basePath
-     * @return this
+     * @param basePath
+     * @return \Prr\Router
      */
     public function setBasePath(string! basePath) -> <\Prr\Router>
     {
@@ -105,8 +105,8 @@ class Router
 	/**
 	 * Add named match types. It uses array_merge so keys can be overwritten.
 	 *
-	 * @param array $matchTypes The key is the name and the value is the regex.
-	 * @return this
+	 * @param array matchTypes The key is the name and the value is the regex.
+	 * @return \Prr\Router
 	 */
 	public function addMatchTypes(var matchTypes) -> <\Prr\Router>
 	{
@@ -120,11 +120,11 @@ class Router
 	/**
 	 * Map a route to a target
 	 *
-	 * @param string $url The route regex, custom regex must start with an @. You can use multiple pre-set regex filters, like [i:id]
-	 * @param array $target The target where this route should point to. Can be anything.
-	 * @param array $methods One of 5 HTTP Methods, or a pipe-separated list of multiple HTTP Methods (GET|POST|PATCH|PUT|DELETE)
-	 * @param string $name Optional name of this route. Supply if you want to reverse route this url in your application.
-	 * @return this
+	 * @param string url The route regex, custom regex must start with an @. You can use multiple pre-set regex filters, like [i:id]
+	 * @param array target The target where this route should point to. Can be anything.
+	 * @param array methods One of 5 HTTP Methods, or a pipe-separated list of multiple HTTP Methods (GET|POST|PATCH|PUT|DELETE)
+	 * @param string name Optional name of this route. Supply if you want to reverse route this url in your application.
+	 * @return \Prr\Router
 	 */
 	public function add(string! url, var target, var methods = null, var name = null) -> <\Prr\Router>
 	{
@@ -155,7 +155,7 @@ class Router
 	 *   ];
 	 *
 	 * @param mixed routes, Can pass array, Traversable or RouteCollection
-	 * @return this
+	 * @return \Prr\Router
 	 * @throws \InvalidArgumentException
 	 */
 	public function addRoutes(var routes) -> <\Prr\Router>
@@ -167,8 +167,8 @@ class Router
 	/**
 	 * Set whether to remove extra slashes
 	 *
-	 * @param boolean $value
-	 * @return this
+	 * @param boolean value
+	 * @return \Prr\Router
 	 */
 	public function removeExtraSlashes(boolean value) -> <\Prr\Router>
 	{
@@ -180,7 +180,7 @@ class Router
 	 * Set the matched route
 	 *
 	 * @param Route route
-	 * @return this
+	 * @return \Prr\Router
 	 */
 	public function setMatchedRoute(<\Prr\Route> route) -> <\Prr\Router>
 	{
@@ -320,7 +320,8 @@ class Router
 	protected function getUrlMatches(string! url) -> array
 	{
 		var matches = [];
-		preg_match_all("`(/|\\.|)\\[([^:\\]]*+)(?::([^:\\]]*+))?\\](\\?|)`", url, matches, PREG_SET_ORDER);
+		//preg_match_all("`(/|\\.|)\\[([^:\\]]*+)(?::([^:\\]]*+))?\\](\\?|)`", url, matches, PREG_SET_ORDER);
+		preg_match_all("`(/|\.|)\{([^:\}]*+)(?::([^:\}]*+))?\}(\\?|)`", url, matches, PREG_SET_ORDER);
 		return matches;
 	}
 

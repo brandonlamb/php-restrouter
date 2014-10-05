@@ -12,7 +12,7 @@
 #define PHP_PRR_VERSION     "0.0.1"
 #define PHP_PRR_EXTNAME     "prr"
 #define PHP_PRR_AUTHOR      ""
-#define PHP_PRR_ZEPVERSION  "0.4.2a"
+#define PHP_PRR_ZEPVERSION  "0.5.2a"
 #define PHP_PRR_DESCRIPTION ""
 
 

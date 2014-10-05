@@ -17,8 +17,8 @@ PHP_METHOD(Prr_Router, getUrlMatches);
 PHP_METHOD(Prr_Router, compileRoute);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_router___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, routes)
-	ZEND_ARG_INFO(0, namedRoutes)
+	ZEND_ARG_OBJ_INFO(0, routes, Prr\\RouteCollection, 1)
+	ZEND_ARG_OBJ_INFO(0, namedRoutes, Prr\\RouteCollection, 1)
 	ZEND_ARG_INFO(0, basePath)
 	ZEND_ARG_INFO(0, matchTypes)
 ZEND_END_ARG_INFO()
@@ -47,7 +47,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_router_removeextraslashes, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_router_setmatchedroute, 0, 0, 1)
-	ZEND_ARG_INFO(0, route)
+	ZEND_ARG_OBJ_INFO(0, route, Prr\\Route, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_router_generate, 0, 0, 1)
