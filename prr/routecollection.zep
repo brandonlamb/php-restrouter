@@ -21,6 +21,17 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
     }
 
     /**
+     * Clear routes
+     *
+     * @return \Prr\RouteCollection
+     */
+    public function clear() -> <\Prr\RouteCollection>
+    {
+        let this->storage = [];
+        return this;
+    }
+
+    /**
      * Add a route to collection
      *
      * @param Route route
@@ -89,23 +100,16 @@ class RouteCollection implements ArrayAccess, Countable, Iterator
             if fetch url, route["url"] {
                 unset route["url"];
             }
+
             if fetch name, route["name"] {
                 unset route["name"];
             }
+
             if fetch methods, route["methods"] {
                 unset route["methods"];
             }
 
-            if !isset route["controller"] {
-                let route["controller"] = "";
-            }
-
-            return this->add(new Route(
-                url,
-                route,
-                methods,
-                name
-            ));
+            return this->add(new Route(url, route, methods, name));
         }
 
         throw new \InvalidArgumentException("route must be array or Route");

@@ -39,13 +39,6 @@ class Route
     protected filters;
 
     /**
-     * Array containing parameters passed through request URL
-     *
-     * @var array
-     */
-    protected parameters;
-
-    /**
      * Constructor
      *
      * @param string url
@@ -53,26 +46,18 @@ class Route
      * @param array methods
      * @param string name
      */
-    public function __construct(string! url, var target = null, var methods = null, string! name = null)
+    public function __construct(
+        string! url,
+        var target = [],
+        var methods = [],
+        string! name = ""
+    )
     {
-        let this->url = url;
-
-        if typeof methods != "array" {
-            let methods = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"];
-        }
+        this->setUrl(url);
         this->setMethods(methods);
-
-        if typeof target != "array" {
-            let target = [];
-        }
         this->setTarget(target);
-
-        if typeof name != "null" {
-            this->setName(name);
-        }
-
+        this->setName(name);
         let this->filters = [];
-        let this->parameters = [];
     }
 
     /**
@@ -214,30 +199,5 @@ class Route
             }
         }
         return "([\\w-]+)";
-    }
-
-    /**
-     * Get route parameters
-     *
-     * @return array
-     */
-    public function getParameters() -> array
-    {
-        return this->parameters;
-    }
-
-    /**
-     * Set route parameters
-     *
-     * @param array $parameters
-     * @return \Prr\Route
-     */
-    public function setParameters(var parameters) -> <\Prr\Route>
-    {
-        if typeof parameters != "array" {
-            throw new \InvalidArgumentException("parameters must be array");
-        }
-        let this->parameters = parameters;
-        return this;
     }
 }

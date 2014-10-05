@@ -12,14 +12,13 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/memory.h"
-#include "kernel/array.h"
 #include "kernel/fcall.h"
-#include "kernel/operators.h"
+#include "kernel/memory.h"
+#include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/string.h"
+#include "kernel/array.h"
 
 
 ZEPHIR_INIT_CLASS(Prr_Route) {
@@ -61,13 +60,6 @@ ZEPHIR_INIT_CLASS(Prr_Route) {
 	 */
 	zend_declare_property_null(prr_route_ce, SL("filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	/**
-	 * Array containing parameters passed through request URL
-	 *
-	 * @var array
-	 */
-	zend_declare_property_null(prr_route_ce, SL("parameters"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
 	return SUCCESS;
 
 }
@@ -83,7 +75,7 @@ ZEPHIR_INIT_CLASS(Prr_Route) {
 PHP_METHOD(Prr_Route, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *url_param = NULL, *target = NULL, *methods = NULL, *name_param = NULL, *_0 = NULL, *_1;
+	zval *url_param = NULL, *target = NULL, *methods = NULL, *name_param = NULL, *_0;
 	zval *url = NULL, *name = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -101,18 +93,16 @@ PHP_METHOD(Prr_Route, __construct) {
 		ZVAL_EMPTY_STRING(url);
 	}
 	if (!target) {
-		ZEPHIR_CPY_WRT(target, ZEPHIR_GLOBAL(global_null));
-	} else {
-		ZEPHIR_SEPARATE_PARAM(target);
+		ZEPHIR_INIT_VAR(target);
+		array_init(target);
 	}
 	if (!methods) {
-		ZEPHIR_CPY_WRT(methods, ZEPHIR_GLOBAL(global_null));
-	} else {
-		ZEPHIR_SEPARATE_PARAM(methods);
+		ZEPHIR_INIT_VAR(methods);
+		array_init(methods);
 	}
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(name);
-		ZVAL_EMPTY_STRING(name);
+		ZVAL_STRING(name, "", 1);
 	} else {
 	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
@@ -128,52 +118,17 @@ PHP_METHOD(Prr_Route, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("url"), url TSRMLS_CC);
-	if (Z_TYPE_P(methods) != IS_ARRAY) {
-		ZEPHIR_INIT_NVAR(methods);
-		array_init_size(methods, 11);
-		ZEPHIR_INIT_VAR(_0);
-		ZVAL_STRING(_0, "GET", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "POST", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "PUT", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "DELETE", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "PATCH", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "OPTIONS", 1);
-		zephir_array_fast_append(methods, _0);
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "HEAD", 1);
-		zephir_array_fast_append(methods, _0);
-	}
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "seturl", NULL, url);
+	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setmethods", NULL, methods);
 	zephir_check_call_status();
-	if (Z_TYPE_P(target) != IS_ARRAY) {
-		ZEPHIR_INIT_NVAR(target);
-		array_init(target);
-	}
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "settarget", NULL, target);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(_0);
-	zephir_gettype(_0, name TSRMLS_CC);
-	if (!ZEPHIR_IS_STRING(_0, "null")) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setname", NULL, name);
-		zephir_check_call_status();
-	}
-	ZEPHIR_INIT_NVAR(_0);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setname", NULL, name);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("filters"), _0 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_1);
-	array_init(_1);
-	zephir_update_property_this(this_ptr, SL("parameters"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -251,7 +206,7 @@ PHP_METHOD(Prr_Route, setTarget) {
 
 
 	if (Z_TYPE_P(target) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "target must be array", "prr/route.zep", 125);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "target must be array", "prr/route.zep", 110);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("target"), target TSRMLS_CC);
@@ -286,7 +241,7 @@ PHP_METHOD(Prr_Route, setMethods) {
 
 
 	if (Z_TYPE_P(methods) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "methods must be array", "prr/route.zep", 150);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "methods must be array", "prr/route.zep", 135);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("methods"), methods TSRMLS_CC);
@@ -355,7 +310,7 @@ PHP_METHOD(Prr_Route, setFilters) {
 
 
 	if (Z_TYPE_P(filters) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "filters must be array", "prr/route.zep", 187);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "filters must be array", "prr/route.zep", 172);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("filters"), filters TSRMLS_CC);
@@ -413,53 +368,18 @@ PHP_METHOD(Prr_Route, substituteFilter) {
 		_0 = zephir_array_isset_long(matches, 1);
 		if (_0) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
-			zephir_array_fetch_long(&_2, matches, 1, PH_READONLY, "prr/route.zep", 212 TSRMLS_CC);
+			zephir_array_fetch_long(&_2, matches, 1, PH_READONLY, "prr/route.zep", 197 TSRMLS_CC);
 			_0 = zephir_array_isset(_1, _2);
 		}
 		if (_0) {
 			_3 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 			ZEPHIR_OBS_VAR(_5);
-			zephir_array_fetch_long(&_5, matches, 1, PH_NOISY, "prr/route.zep", 213 TSRMLS_CC);
-			zephir_array_fetch(&_4, _3, _5, PH_NOISY | PH_READONLY, "prr/route.zep", 213 TSRMLS_CC);
+			zephir_array_fetch_long(&_5, matches, 1, PH_NOISY, "prr/route.zep", 198 TSRMLS_CC);
+			zephir_array_fetch(&_4, _3, _5, PH_NOISY | PH_READONLY, "prr/route.zep", 198 TSRMLS_CC);
 			RETURN_CTOR(_4);
 		}
 	}
 	RETURN_MM_STRING("([\\w-]+)", 1);
-
-}
-
-/**
- * Get route parameters
- *
- * @return array
- */
-PHP_METHOD(Prr_Route, getParameters) {
-
-
-	RETURN_MEMBER(this_ptr, "parameters");
-
-}
-
-/**
- * Set route parameters
- *
- * @param array $parameters
- * @return \Prr\Route
- */
-PHP_METHOD(Prr_Route, setParameters) {
-
-	zval *parameters;
-
-	zephir_fetch_params(0, 1, 0, &parameters);
-
-
-
-	if (Z_TYPE_P(parameters) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "parameters must be array", "prr/route.zep", 238);
-		return;
-	}
-	zephir_update_property_this(this_ptr, SL("parameters"), parameters TSRMLS_CC);
-	RETURN_THISW();
 
 }
 

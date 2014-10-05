@@ -4,6 +4,7 @@ extern zend_class_entry *prr_routecollection_ce;
 ZEPHIR_INIT_CLASS(Prr_RouteCollection);
 
 PHP_METHOD(Prr_RouteCollection, __construct);
+PHP_METHOD(Prr_RouteCollection, clear);
 PHP_METHOD(Prr_RouteCollection, add);
 PHP_METHOD(Prr_RouteCollection, addRoutes);
 PHP_METHOD(Prr_RouteCollection, addRoute);
@@ -51,6 +52,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(prr_routecollection_method_entry) {
 	PHP_ME(Prr_RouteCollection, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Prr_RouteCollection, clear, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Prr_RouteCollection, add, arginfo_prr_routecollection_add, ZEND_ACC_PUBLIC)
 	PHP_ME(Prr_RouteCollection, addRoutes, arginfo_prr_routecollection_addroutes, ZEND_ACC_PUBLIC)
 	PHP_ME(Prr_RouteCollection, addRoute, arginfo_prr_routecollection_addroute, ZEND_ACC_PROTECTED)

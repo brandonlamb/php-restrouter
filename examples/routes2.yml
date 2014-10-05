@@ -1,600 +1,600 @@
 ---
-- url: "/users/{i:id}/x6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_0"
+- url: /users/{i:id}/i2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C0Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/c6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_1"
+- url: /users/{i:id}/v2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C1Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_2"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C2Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/i6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_3"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C3Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_4"
+- url: /users/{i:id}/s2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C4Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/y6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_5"
+- url: /users/{i:id}/v2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C5Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_6"
+- url: /users/{i:id}/j2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C6Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_7"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C7Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/u6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_8"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C8Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/g6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_9"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C9Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_10"
+- url: /users/{i:id}/n2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C10Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/m6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_11"
+- url: /users/{i:id}/x2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C11Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/s6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_12"
+- url: /users/{i:id}/p2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C12Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/j6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_13"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C13Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/t6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_14"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C14Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/n6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_15"
+- url: /users/{i:id}/h2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C15Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_16"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C16Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_17"
+- url: /users/{i:id}/h2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C17Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/i6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_18"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C18Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/d6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_19"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C19Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_20"
+- url: /users/{i:id}/j2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C20Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/w6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_21"
+- url: /users/{i:id}/z2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C21Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/p6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_22"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C22Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_23"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C23Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/c6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_24"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C24Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_25"
+- url: /users/{i:id}/w2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C25Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/d6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_26"
+- url: /users/{i:id}/z2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C26Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/j6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_27"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C27Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_28"
+- url: /users/{i:id}/u2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C28Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_29"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C29Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/u6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_30"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C30Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_31"
+- url: /users/{i:id}/c2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C31Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/f6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_32"
+- url: /users/{i:id}/n2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C32Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/n6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_33"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C33Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_34"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C34Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/b6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_35"
+- url: /users/{i:id}/s2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C35Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_36"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C36Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/j6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_37"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C37Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/n6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_38"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C38Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/x6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_39"
+- url: /users/{i:id}/m2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C39Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/j6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_40"
+- url: /users/{i:id}/q2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C40Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/m6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_41"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C41Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_42"
+- url: /users/{i:id}/w2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C42Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/y6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_43"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C43Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_44"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C44Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_45"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C45Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_46"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C46Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/q6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_47"
+- url: /users/{i:id}/w2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C47Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_48"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C48Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/q6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_49"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C49Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_50"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C50Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/c6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_51"
+- url: /users/{i:id}/q2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C51Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/m6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_52"
+- url: /users/{i:id}/k2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C52Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/c6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_53"
+- url: /users/{i:id}/n2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C53Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/u6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_54"
+- url: /users/{i:id}/r2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C54Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_55"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C55Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/m6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_56"
+- url: /users/{i:id}/q2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C56Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_57"
+- url: /users/{i:id}/o2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C57Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_58"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C58Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/g6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_59"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C59Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_60"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C60Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/b6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_61"
+- url: /users/{i:id}/w2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C61Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/w6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_62"
+- url: /users/{i:id}/v2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C62Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_63"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C63Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/w6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_64"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C64Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/f6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_65"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C65Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/b6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_66"
+- url: /users/{i:id}/u2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C66Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/i6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_67"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C67Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/n6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_68"
+- url: /users/{i:id}/w2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C68Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/o6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_69"
+- url: /users/{i:id}/h2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C69Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/l6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_70"
+- url: /users/{i:id}/d2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C70Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_71"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C71Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_72"
+- url: /users/{i:id}/c2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C72Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/f6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_73"
+- url: /users/{i:id}/s2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C73Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_74"
+- url: /users/{i:id}/s2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C74Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/z6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_75"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C75Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/j6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_76"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C76Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/h6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_77"
+- url: /users/{i:id}/f2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C77Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/e6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_78"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C78Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/l6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_79"
+- url: /users/{i:id}/x2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C79Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_80"
+- url: /users/{i:id}/q2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C80Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/b6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_81"
+- url: /users/{i:id}/n2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C81Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/d6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_82"
+- url: /users/{i:id}/n2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C82Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/g6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_83"
+- url: /users/{i:id}/c2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C83Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/s6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_84"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C84Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/m6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_85"
+- url: /users/{i:id}/b2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C85Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/q6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_86"
+- url: /users/{i:id}/z2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C86Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/s6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_87"
+- url: /users/{i:id}/y2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C87Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/x6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_88"
+- url: /users/{i:id}/t2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C88Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_89"
+- url: /users/{i:id}/l2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C89Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/u6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_90"
+- url: /users/{i:id}/z2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C90Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/i6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_91"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C91Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/q6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_92"
+- url: /users/{i:id}/q2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C92Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/r6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_93"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C93Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/p6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_94"
+- url: /users/{i:id}/c2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C94Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/k6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_95"
+- url: /users/{i:id}/o2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C95Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/a6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_96"
+- url: /users/{i:id}/e2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C96Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_97"
+- url: /users/{i:id}/a2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C97Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/f6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_98"
+- url: /users/{i:id}/s2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C98Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]
 
-- url: "/users/{i:id}/v6452bb8801efc9031f8a7e7251c8244"
-  controller: "Controller_99"
+- url: /users/{i:id}/g2ba087a22ca1863673172ec08945d0a
+  controller: \Api\Controller\C99Controller::action
   methods: [GET, POST]
   consumes: ["application/json", "application/xml"]
   produces: ["application/json", "application/xml"]

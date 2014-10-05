@@ -45,6 +45,55 @@ class Router
      */
     protected matchTypes;
 
+    /**
+     * Default consumes array
+     *
+     * @var array
+     */
+    protected defaultConsumes;
+
+    /**
+     * Default produces array
+     *
+     * @var array
+     */
+    protected defaultProduces;
+
+    /**
+     * Array of media type route consumes
+     *
+     * @var array
+     */
+    protected consumes;
+
+    /**
+     * Array of media types route produces
+     *
+     * @var array
+     */
+    protected produces;
+
+    /**
+     * Controller name
+     *
+     * @var string
+     */
+    protected controller;
+
+    /**
+     * Action name
+     *
+     * @var string
+     */
+    protected action;
+
+    /**
+     * Array containing parameters passed through request URL
+     *
+     * @var array
+     */
+    protected params;
+
 	/**
 	 * Constructor
 	 *
@@ -88,6 +137,10 @@ class Router
 		}
 
 		this->setBasePath(basePath);
+
+		let this->defaultConsumes = [];
+		let this->defaultProduces = [];
+		let this->params = [];
 	}
 
     /**
@@ -114,6 +167,18 @@ class Router
 			throw new \InvalidArgumentException("matchTypes must be array");
 		}
 		let this->matchTypes = array_merge(this->matchTypes, matchTypes);
+		return this;
+	}
+
+	/**
+	 * Clear routes from route collection
+	 *
+	 * @return \Prr\Router
+	 */
+	public function clear() -> <\Prr\Router>
+	{
+		this->routes->clear();
+		this->namedRoutes->clear();
 		return this;
 	}
 
@@ -202,6 +267,86 @@ class Router
 	}
 
 	/**
+	 * Get controller class name
+	 *
+	 * @return string
+	 */
+	public function getController() -> string
+	{
+		return this->controller;
+	}
+
+	/**
+	 * Get action name
+	 *
+	 * @return string
+	 */
+	public function getAction() -> string
+	{
+		return this->action;
+	}
+
+    /**
+     * Get consumes array
+     *
+     * @return array
+     */
+    public function getConsumes() -> array
+    {
+        return this->consumes;
+    }
+
+    /**
+     * Get produces array
+     *
+     * @return array
+     */
+    public function getProduces() -> array
+    {
+        return this->produces;
+    }
+
+    /**
+     * Set the default consumes array
+     *
+     * @param array consumes
+     * @return \Prr\Router
+     */
+    public function setDefaultConsumes(var consumes) -> <\Prr\Router>
+    {
+    	if typeof consumes != "array" {
+    		throw new \InvalidArgumentException("consumes must be array");
+    	}
+    	let this->consumes = consumes;
+    	return this;
+    }
+
+    /**
+     * Set the default produces array
+     *
+     * @param array produces
+     * @return \Prr\Router
+     */
+    public function setDefaultProduces(var produces) -> <\Prr\Router>
+    {
+    	if typeof produces != "array" {
+    		throw new \InvalidArgumentException("consumes must be array");
+    	}
+    	let this->produces = produces;
+    	return this;
+    }
+
+    /**
+     * Get route parameters
+     *
+     * @return array
+     */
+    public function getParams() -> array
+    {
+        return this->params;
+    }
+
+	/**
 	 * Reversed routing
 	 *
 	 * Generate the URL for a named route. Replace regexes with supplied parameters
@@ -258,12 +403,13 @@ class Router
 	 *
 	 * @param string $requestUrl
 	 * @param string $method
-	 * @return Route|boolean
+	 * @return boolean
 	 */
-	public function match(string! requestUrl, string! method) -> boolean | <\Prr\Route>
+	public function match(string! requestUrl, string! method) -> boolean
 	{
 		boolean match = false;
-		var route, methods, routeUrl, pattern, key, value, params = [];
+		var route, methods, routeUrl, pattern, key, value, target, controller, action;
+		var consumes, produces, params = [];
 
 		if this->removeExtraSlashes {
 			let requestUrl = rtrim(requestUrl, "/");
@@ -301,10 +447,42 @@ class Router
 					}
 				}
 
-				route->setParameters(params);
+				let this->params = params;
+
+				// Fetch target data from route
+				let target = route->getTarget();
+
+				if fetch controller, target["controller"] {
+					if memstr(controller, "::") {
+						let controller = explode("::", controller);
+						let this->controller = controller[0];
+						let this->action = controller[1];
+					} else {
+						let this->controller = controller;
+					}
+				}
+
+				if fetch action, target["action"] {
+					let this->action = action;
+				}
+
+				if fetch consumes, target["consumes"] {
+					let this->consumes = consumes;
+				} else {
+					let this->consumes = this->defaultConsumes;
+				}
+
+				if fetch produces, target["produces"] {
+					let this->produces = produces;
+				} else {
+					let this->produces = this->defaultProduces;
+				}
+
 				route->setTarget(array_merge(route->getTarget(), ["method": method]));
 
-				return this->setMatchedRoute(route)->getMatchedRoute();
+				this->setMatchedRoute(route);
+
+				return true;
 			}
 		}
 

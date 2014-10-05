@@ -15,8 +15,6 @@ PHP_METHOD(Prr_Route, setName);
 PHP_METHOD(Prr_Route, setFilters);
 PHP_METHOD(Prr_Route, getRegex);
 PHP_METHOD(Prr_Route, substituteFilter);
-PHP_METHOD(Prr_Route, getParameters);
-PHP_METHOD(Prr_Route, setParameters);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_route___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, url)
@@ -49,10 +47,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_route_substitutefilter, 0, 0, 1)
 	ZEND_ARG_INFO(0, matches)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_prr_route_setparameters, 0, 0, 1)
-	ZEND_ARG_INFO(0, parameters)
-ZEND_END_ARG_INFO()
-
 ZEPHIR_INIT_FUNCS(prr_route_method_entry) {
 	PHP_ME(Prr_Route, __construct, arginfo_prr_route___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Prr_Route, getUrl, NULL, ZEND_ACC_PUBLIC)
@@ -66,7 +60,5 @@ ZEPHIR_INIT_FUNCS(prr_route_method_entry) {
 	PHP_ME(Prr_Route, setFilters, arginfo_prr_route_setfilters, ZEND_ACC_PUBLIC)
 	PHP_ME(Prr_Route, getRegex, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Prr_Route, substituteFilter, arginfo_prr_route_substitutefilter, ZEND_ACC_PROTECTED)
-	PHP_ME(Prr_Route, getParameters, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Prr_Route, setParameters, arginfo_prr_route_setparameters, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
