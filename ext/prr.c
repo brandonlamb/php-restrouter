@@ -24,6 +24,10 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 
+
+
+zend_class_entry *prr_exception_ce;
+zend_class_entry *prr_exception_unsupportedmethodexception_ce;
 zend_class_entry *prr_route_ce;
 zend_class_entry *prr_routecollection_ce;
 zend_class_entry *prr_router_ce;
@@ -192,6 +196,8 @@ static PHP_MINIT_FUNCTION(prr)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Prr_Exception);
+	ZEPHIR_INIT(Prr_Exception_UnsupportedMethodException);
 	ZEPHIR_INIT(Prr_Route);
 	ZEPHIR_INIT(Prr_RouteCollection);
 	ZEPHIR_INIT(Prr_Router);
@@ -209,9 +215,6 @@ static PHP_MSHUTDOWN_FUNCTION(prr)
 
 	zephir_deinitialize_memory(TSRMLS_C);
 
-	//assert(ZEPHIR_GLOBAL(orm).parser_cache == NULL);
-	//assert(ZEPHIR_GLOBAL(orm).ast_cache == NULL);
-
 	return SUCCESS;
 }
 #endif
@@ -227,6 +230,13 @@ static void php_zephir_init_globals(zend_prr_globals *zephir_globals TSRMLS_DC)
 
 	/* Virtual Symbol Tables */
 	zephir_globals->active_symbol_table = NULL;
+
+	/* Cache Enabled */
+#if PHP_VERSION_ID < 50600
+	zephir_globals->cache_enabled = 1;
+#else
+	zephir_globals->cache_enabled = 0;
+#endif
 
 	/* Recursive Lock */
 	zephir_globals->recursive_lock = 0;
@@ -249,6 +259,8 @@ static PHP_RINIT_FUNCTION(prr)
 
 static PHP_RSHUTDOWN_FUNCTION(prr)
 {
+
+	
 
 	zephir_deinitialize_memory(TSRMLS_C);
 	return SUCCESS;

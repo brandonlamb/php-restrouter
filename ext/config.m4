@@ -2,7 +2,9 @@ PHP_ARG_ENABLE(prr, whether to enable prr, [ --enable-prr   Enable Prr])
 
 if test "$PHP_PRR" = "yes"; then
 	AC_DEFINE(HAVE_PRR, 1, [Whether you have Prr])
-	prr_sources="prr.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c prr/route.zep.c
+	prr_sources="prr.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c prr/exception.zep.c
+	prr/exception/unsupportedmethodexception.zep.c
+	prr/route.zep.c
 	prr/routecollection.zep.c
 	prr/router.zep.c "
 	PHP_NEW_EXTENSION(prr, $prr_sources, $ext_shared)

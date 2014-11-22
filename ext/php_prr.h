@@ -12,7 +12,7 @@
 #define PHP_PRR_VERSION     "0.0.1"
 #define PHP_PRR_EXTNAME     "prr"
 #define PHP_PRR_AUTHOR      ""
-#define PHP_PRR_ZEPVERSION  "0.5.2a"
+#define PHP_PRR_ZEPVERSION  "0.5.4a"
 #define PHP_PRR_DESCRIPTION ""
 
 
@@ -29,6 +29,9 @@ ZEND_BEGIN_MODULE_GLOBALS(prr)
 
 	/** Function cache */
 	HashTable *fcache;
+
+	/* Cache enabled */
+	unsigned int cache_enabled;
 
 	/* Max recursion control */
 	unsigned int recursive_lock;

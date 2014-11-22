@@ -17,6 +17,7 @@
 #include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/operators.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
 
@@ -86,8 +87,8 @@ PHP_METHOD(Prr_Route, __construct) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(url_param) == IS_STRING)) {
-		url = url_param;
+	if (likely(Z_TYPE_P(url_param) == IS_STRING)) {
+		zephir_get_strval(url, url_param);
 	} else {
 		ZEPHIR_INIT_VAR(url);
 		ZVAL_EMPTY_STRING(url);
@@ -109,8 +110,8 @@ PHP_METHOD(Prr_Route, __construct) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(name_param) == IS_STRING)) {
-		name = name_param;
+	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(name);
 		ZVAL_EMPTY_STRING(name);
@@ -164,8 +165,8 @@ PHP_METHOD(Prr_Route, setUrl) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(url_param) == IS_STRING)) {
-		url = url_param;
+	if (likely(Z_TYPE_P(url_param) == IS_STRING)) {
+		zephir_get_strval(url, url_param);
 	} else {
 		ZEPHIR_INIT_VAR(url);
 		ZVAL_EMPTY_STRING(url);
@@ -280,8 +281,8 @@ PHP_METHOD(Prr_Route, setName) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(name_param) == IS_STRING)) {
-		name = name_param;
+	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(name);
 		ZVAL_EMPTY_STRING(name);
@@ -340,7 +341,7 @@ PHP_METHOD(Prr_Route, getRegex) {
 	zephir_array_fast_append(_0, _1);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("url"), PH_NOISY_CC);
 	ZEPHIR_INIT_BNVAR(_1);
-	ZVAL_STRING(_1, "/:(\\w+)/", 0);
+	ZVAL_STRING(_1, "/:(\\w+)/", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace_callback", &_3, _1, _0, _2);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
