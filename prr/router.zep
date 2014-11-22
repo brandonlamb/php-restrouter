@@ -1,6 +1,8 @@
 
 namespace Prr;
 
+use Prr\Exception\UnsupportedMethodException;
+
 class Router
 {
 	/**
@@ -407,7 +409,7 @@ class Router
 	 */
 	public function match(string! requestUrl, string! method) -> boolean
 	{
-		boolean match = false;
+		boolean match = false, unsupportedMethod = false;
 		var route, methods, routeUrl, pattern, key, value, target, controller, action;
 		var consumes, produces, params = [];
 
@@ -419,6 +421,7 @@ class Router
 	        // compare server request method with route"s allowed http methods
 			let methods = route->getMethods();
 	        if !in_array(method, methods) {
+	        	let unsupportedMethod = true;
 	            continue;
 	        }
 
@@ -484,6 +487,11 @@ class Router
 
 				return true;
 			}
+		}
+
+		// We throw an exception if a route was matched by URL but did not support the method passed
+		if unsupportedMethod {
+			throw new UnsupportedMethodException("Route matched to URL, but method not supported");
 		}
 
 		return false;
